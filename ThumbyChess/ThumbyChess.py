@@ -1,4 +1,4 @@
-### Functions for Micropython compatability
+### Functions for Micropython/Thumby compatibility
 import re, sys, time, thumby
 from collections import namedtuple
 
