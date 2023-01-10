@@ -59,9 +59,7 @@ def pick_move():
             thumby.display.update()
             thumby.display.drawFilledRectangle(18, choicedraw, 40, 7, 0)
             thumby.display.update()
-            
-    thumby.display.fill(0)
-    thumby.display.update()
+    thumby.display.drawFilledRectangle(0, choicedraw, 71, 7, 0)
     return choice1 + choice2
 
 
@@ -456,7 +454,7 @@ def render(i):
 
 
 def print_pos(pos):
-    print()
+    print("")
     uni_pieces = {'R':'♜', 'N':'♞', 'B':'♝', 'Q':'♛', 'K':'♚', 'P':'♟',
                   'r':'♖', 'n':'♘', 'b':'♗', 'q':'♕', 'k':'♔', 'p':'♙', '.':'·'}
     for i, row in enumerate(pos.board.split()):
@@ -490,6 +488,7 @@ def main():
         # This allows us to see the effect of our move.
         print_pos(hist[-1].rotate())
         print('Thinking... \n')
+        thumby.display.fill(0)
         thumby.display.drawText("Thinking...", 0, 0, 1)
         thumby.display.update()
 
