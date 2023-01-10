@@ -1,4 +1,4 @@
-### Functions for Micropython/Thumby compatibility
+### Functions for Micropython compatability
 import re, sys, time, thumby
 from collections import namedtuple
 
@@ -463,11 +463,19 @@ def print_pos(pos):
 def main():
     hist = [Position(initial, 0, (True,True), (True,True), 0, 0)]
     searcher = Searcher()
+    
+    thumby.display.drawText("Good Luck!", 0, 0, 1)
+    thumby.display.drawText("u play white", 0, 11, 1)
+    thumby.display.drawText("First Move?", 0, 22, 1)
+    
     while True:
         print_pos(hist[-1])
 
         if hist[-1].score <= -MATE_LOWER:
             print("You lost")
+            thumby.display.fill(0)
+            thumby.display.drawText("You lost.", 0, 0, 1)
+            thumby.display.update()
             break
 
         # We query the user until she enters a (pseudo) legal move.
@@ -492,6 +500,9 @@ def main():
 
         if hist[-1].score <= -MATE_LOWER:
             print("You won")
+            thumby.display.fill(0)
+            thumby.display.drawText("You Won!", 0, 0, 1)
+            thumby.display.update()
             break
 
         # Fire up the engine to look for a move.
@@ -503,6 +514,9 @@ def main():
 
         if score == MATE_UPPER:
             print("Checkmate!")
+            thumby.display.fill(0)
+            thumby.display.drawText("Checkmate!", 0, 0, 1)
+            thumby.display.update()
 
         # The black player moves from a rotated position, so we have to
         # 'back rotate' the move before printing it.
@@ -515,7 +529,9 @@ def main():
         thumby.display.update()
         hist.append(hist[-1].move(move))
 
-thumby.display.drawText("Good Luck!", 0, 0, 1)
-thumby.display.drawText("u play white", 0, 11, 1)
-thumby.display.drawText("First Move?", 0, 22, 1)
+
+
 main()
+
+while True:
+    pass
