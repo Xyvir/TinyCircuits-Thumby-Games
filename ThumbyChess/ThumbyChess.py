@@ -3,8 +3,6 @@ import re, sys, time, thumby
 from collections import namedtuple
 
 # count from itertools
-import builtins
-
 
 def count(start=0, step=1):
     while True:
@@ -169,7 +167,7 @@ MATE_LOWER = piece['K'] - 10*piece['Q']
 MATE_UPPER = piece['K'] + 10*piece['Q']
 
 # The table size is the maximum number of elements in the transposition table.
-TABLE_SIZE = 1e7
+TABLE_SIZE = 20
 
 # Constants for tuning search
 QS_LIMIT = 219
