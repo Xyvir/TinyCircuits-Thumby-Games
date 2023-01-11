@@ -167,7 +167,7 @@ MATE_LOWER = piece['K'] - 10*piece['Q']
 MATE_UPPER = piece['K'] + 10*piece['Q']
 
 # The table size is the maximum number of elements in the transposition table.
-TABLE_SIZE = 20
+TABLE_SIZE = 1e7
 
 # Constants for tuning search
 QS_LIMIT = 219
@@ -370,6 +370,7 @@ class Searcher:
             best = max(best, score)
             if best >= gamma:
                 # Clear before setting, so we always have a value
+                print("A: " + len(self.tp_move))
                 if len(self.tp_move) > TABLE_SIZE: self.tp_move.clear()
                 # Save the move for pv construction and killer heuristic
                 self.tp_move[pos] = move
@@ -392,6 +393,7 @@ class Searcher:
                 best = -MATE_UPPER if in_check else 0
 
         # Clear before setting, so we always have a value
+        print("B: " + len(self.tp_move))
         if len(self.tp_score) > TABLE_SIZE: self.tp_score.clear()
         # Table part 2
         if best >= gamma:
