@@ -196,7 +196,7 @@ MATE_LOWER = piece['K'] - 10*piece['Q']
 MATE_UPPER = piece['K'] + 10*piece['Q']
 
 # The table size is the maximum number of elements in the transposition table.
-TABLE_SIZE = 200
+TABLE_SIZE = 150
 
 # Constants for tuning search
 QS_LIMIT = 219
