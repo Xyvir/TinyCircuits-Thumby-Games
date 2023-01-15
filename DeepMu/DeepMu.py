@@ -589,5 +589,4 @@ def main():
 main()
 
 while True:
-    pass# BITMAP: width: 8, height: 8
-bitmap0 = bytearray([255,255,255,255,255,255,255,255])
+    pass
