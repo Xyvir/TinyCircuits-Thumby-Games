@@ -21,9 +21,11 @@ def draw_cursor(x,y,color):
         thumby.display.setPixel(20 + x*4 + i[0], 1 + y*4 + i[1], color)
     return
     
+hist = []   
 
 def picker(xdraw=0, ydraw=0, lastpos = False):
     
+    global hist
     num = ["8","7","6","5","4","3","2","1"]
     alph = ["a","b","c","d","e","f","g","h"]
     
@@ -32,7 +34,7 @@ def picker(xdraw=0, ydraw=0, lastpos = False):
         y = num.index(lastpos[1])
     else:
         x = 0
-        y = 0
+        y = 7
     
     while (thumby.buttonA.justPressed() == False and thumby.buttonB.justPressed() == False):
         
@@ -52,8 +54,9 @@ def picker(xdraw=0, ydraw=0, lastpos = False):
         thumby.display.drawFilledRectangle(xdraw, ydraw, 12, 7, 0)
         thumby.display.drawText(x2 + y2, xdraw, ydraw, 1)
         
-        color = round(time.ticks_ms()/200) % 2
+        color = round(time.ticks_ms()/150) % 2
         
+        print_pos(hist[-1])
         draw_cursor(x1, y1, color)
         
         thumby.display.update()
@@ -89,7 +92,7 @@ chessboardblit = bytearray([0,76,92,216,0,255,33,1,1,1,3,1,1,1,3,1,1,1,3,1,1,1,3
            0,69,213,17,0,255,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,255,
            0,1,1,1,0,7,4,100,52,116,6,116,116,100,6,100,84,84,6,116,84,36,6,116,116,84,6,116,52,20,6,116,20,84,6,116,36,116,4,7])
            
-chessboard = thumby.Sprite(40, 40, chessboardblit, 14, 0, 0)
+chessboard = thumby.Sprite(40, 40, chessboardblit, 14, 0, -1)
     
 ### Begin regular sunfish stuff
 
@@ -489,6 +492,7 @@ def render(i):
 
 def print_pos(pos):
     #uni_pieces = {'R':'R', 'N':'N', 'B':'B', 'Q':'Q', 'K':'K', 'P':'P','r':'r', 'n':'n', 'b':'b', 'q':'q', 'k':'k', 'p':'p', '.':'.'}
+    thumby.display.drawSprite(chessboard)
     set_chess_font()
     for i, row in enumerate(pos.board.split()):
         #stringrow = ' '.join(row)
@@ -500,6 +504,7 @@ def print_pos(pos):
 
 
 def main():
+    global hist
     hist = [Position(initial, 0, (True,True), (True,True), 0, 0)]
     searcher = Searcher()
     
@@ -579,7 +584,6 @@ def main():
         thumby.display.drawText(mymove1, 58, 14, 1)
         thumby.display.drawText("v", 61, 22, 1)
         thumby.display.drawText(mymove2, 58, 32, 1)
-        thumby.display.drawSprite(chessboard)
         thumby.display.drawText("U:", 0, 0, 1)
         thumby.display.update()
         hist.append(hist[-1].move(move))
@@ -589,4 +593,5 @@ def main():
 main()
 
 while True:
-    pass
+    pass# BITMAP: width: 8, height: 8
+bitmap0 = bytearray([255,255,255,255,255,255,255,255])
