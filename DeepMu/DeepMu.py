@@ -497,9 +497,9 @@ def print_pos(pos):
     for i, row in enumerate(pos.board.split()):
         #stringrow = ' '.join(row)
         #print(' ', 8-i, stringrow)
-        print (i, row)
+        #print (i, row)
         thumby.display.drawText(row, 20, 1 + i*4, 1)
-    print('  abcdefgh\n\n')
+    #print('  abcdefgh\n\n')
     set_default_font()
 
 
@@ -524,7 +524,7 @@ def main():
         print_pos(hist[-1])
 
         if hist[-1].score <= -MATE_LOWER:
-            print("You lost")
+           #print("You lost")
             thumby.display.fill(0)
             thumby.display.drawText("You lost.", 0, 0, 1)
             thumby.display.update()
@@ -540,7 +540,7 @@ def main():
                 move = parse(match.group(1)), parse(match.group(2))
             else:
                 # Inform the user when invalid input (e.g. "help") is entered
-                print("Please enter a move like g8f6")
+                #print("Please enter a move like g8f6")
         
         thumby.display.fill(0)
         thumby.display.drawText("Thinking...", 0, 0, 1)
@@ -551,11 +551,11 @@ def main():
         # After our move we rotate the board and print it again.
         # This allows us to see the effect of our move.
         print_pos(hist[-1].rotate())
-        print('Thinking... \n')
+        #print('Thinking... \n')
  
 
         if hist[-1].score <= -MATE_LOWER:
-            print("You won")
+            #print("You won")
             thumby.display.fill(0)
             thumby.display.drawText("You Won!", 0, 0, 1)
             thumby.display.update()
@@ -569,7 +569,7 @@ def main():
                 break
 
         if score == MATE_UPPER:
-            print("Checkmate!")
+            #print("Checkmate!")
             thumby.display.fill(0)
             thumby.display.drawText("Checkmate!", 0, 0, 1)
             thumby.display.update()
@@ -578,7 +578,7 @@ def main():
         # 'back rotate' the move before printing it.
         mymove1 = render(119-move[0]) 
         mymove2 = render(119-move[1])
-        print("ME:", mymove1 + mymove2)
+        #print("ME:", mymove1 + mymove2)
         thumby.display.fill(0)
         thumby.display.drawText("ME:", 56, 0, 1)
         thumby.display.drawText(mymove1, 58, 14, 1)
@@ -593,5 +593,4 @@ def main():
 main()
 
 while True:
-    pass# BITMAP: width: 8, height: 8
-bitmap0 = bytearray([255,255,255,255,255,255,255,255])
+    pass
