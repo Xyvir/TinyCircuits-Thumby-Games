@@ -560,7 +560,7 @@ def main():
         start = time.ticks_ms()
         for _depth, move, score in searcher.search(hist[-1], hist):
 
-            if time.ticks_ms() - start > 1500:
+            if time.ticks_ms() - start > 1000:
                 break
 
         if score == MATE_UPPER:
