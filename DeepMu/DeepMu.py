@@ -538,7 +538,7 @@ def main():
             match = re.match('([a-h][1-8])'*2, yourmove)
             if match:
                 move = parse(match.group(1)), parse(match.group(2))
-            else:
+            #else:
                 # Inform the user when invalid input (e.g. "help") is entered
                 #print("Please enter a move like g8f6")
         
